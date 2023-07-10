@@ -5,7 +5,7 @@ import Sample from "./Components/Sample";
 
 function App() {
   const [show, setShow] = useState(false);
-  const a = ["a", "b", "c"];
+
   return (
     <div className="App">
       <button
@@ -16,7 +16,7 @@ function App() {
         {show ? "hide" : "show"}
       </button>
       <br />
-      {show ? <Sample some={a} /> : null}
+      {show ? <Sample /> : null}
     </div>
   );
 }

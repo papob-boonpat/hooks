@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
 
-function Sample(props: { some: string[] }) {
+function Sample() {
   const [count, setCount] = useState(0);
   useEffect(() => {
     console.log("mounted");
     return () => {
-      console.log("cleanup");
+      console.log("unmount");
     };
   }, []);
 
-  const some = [...props.some];
-  some.push("d");
+  useEffect(() => {
+    console.log(count);
+    return () => {
+      console.log("cleanup");
+    };
+  }, [count]);
+
   return (
     <div>
-      <ul>
-        {some.map((data) => (
-          <li>{data}</li>
-        ))}
-      </ul>
+      Count: {count}
+      <br />
+      <button onClick={() => setCount((prev) => --prev)}>-</button>
+      <button onClick={() => setCount((prev) => ++prev)}>+</button>
     </div>
   );
 }
