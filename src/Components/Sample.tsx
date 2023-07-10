@@ -1,30 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 
 function Sample() {
-  const [count, setCount] = useState(0);
-  const isFirstTime = useRef(true);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (isFirstTime.current) {
-      isFirstTime.current = false;
-      return;
-    }
-
-    console.log(count);
-  }, [count]);
+  const handle = () => {
+    alert(inputRef.current?.value);
+  };
+  const handleDiv = () => {
+    console.log("width:", divRef.current?.clientWidth);
+    console.log("height:", divRef.current?.clientHeight);
+  };
 
   return (
     <div>
-      Count: {count}
-      <br />
-      <button
-        onClick={() => {
-          setCount((prev) => ++prev);
+      Something: <input type="text" ref={inputRef} />
+      <button onClick={handle}>Show Alert</button>
+      <div
+        style={{
+          width: Math.random() * 1000,
+          height: Math.random() * 300,
+          backgroundColor: "blue",
         }}
-      >
-        Count Up
-      </button>
-      <button onClick={() => {}}>Show Me</button>
+        ref={divRef}
+      ></div>
+      <button onClick={handleDiv}>Show Size</button>
     </div>
   );
 }
