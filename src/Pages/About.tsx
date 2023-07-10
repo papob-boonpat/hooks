@@ -6,6 +6,9 @@ function About() {
   return (
     <div>
       About
+      <br />
+      <Link to="/posts">go to posts</Link>
+      <br />
       <button
         onClick={() => {
           navigate(-1);
